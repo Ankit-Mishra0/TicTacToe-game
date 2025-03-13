@@ -16,6 +16,8 @@ const winPattern = [
 ];
 boxex.forEach((box) => {
   box.addEventListener("click", () => {
+    var audio = new Audio("sounds/click.wav");
+    audio.play();
     if (turnO) {
       box.innerText = "O";
       turnO = false;
@@ -37,11 +39,15 @@ const checkWinner = () => {
       document.querySelector("h1").innerText = `winner is ${
         boxex[pattern[0]].innerText
       }`;
+      var audio = new Audio("sounds/victory.mp3");
+      audio.play();
       boxex.forEach((box) => (box.disabled = true));
       return;
     }
     if ([...boxex].every((box) => box.innerText !== "")) {
       document.querySelector("h1").innerText = "It's a draw!";
+      var audio = new Audio("sounds/gameOver.mp3");
+      audio.play();
     }
   }
 };
